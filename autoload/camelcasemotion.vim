@@ -65,7 +65,7 @@ function! s:Move(direction, count, mode)
       let l:direction = (a:direction == 'w' ? '' : a:direction)
 
       " word | empty line | non-keyword after whitespaces | non-whitespace after word | number | lowercase folowed by capital letter or number | ACRONYM followed by CamelCase or number | CamelCase | ACRONYM | underscore followed by ACRONYM, Camel, lowercase or number
-      call search( '\m\<\D\|^$\|\%(^\|\s\)\+\zs\k\@!\S\|\>\<\|\d\+\|\l\+\zs\%(\u\|\d\)\|\u\+\zs\%(\u\l\|\d\)\|\u\l\+\|\u\@<!\u\+\|[-_]\zs\%(\u\+\|\u\l\+\|\l\+\|\d\+\)', 'W' . l:direction)
+      call search( '\m\<\D\|^$\|\%(^\|\s\)\+\zs\k\@![^\t "'']\|\>\<\|\d\+\|\l\+\zs\%(\u\|\d\)\|\u\+\zs\%(\u\l\|\d\)\|\u\l\+\|\u\@<!\u\+\|[-_]\zs\%(\u\+\|\u\l\+\|\l\+\|\d\+\)', 'W' . l:direction)
       " Note: word must be defined as '\<\D' to avoid that a word like
       " 1234Test is moved over as [1][2]34[T]est instead of [1]234[T]est
       " because \< matches with zero width, and \d\+ will then start
